@@ -21,7 +21,7 @@ class Pslabs_Search_Log_Admin{
         $lower_limit = ($current_page - 1 ) * $count_per_page;
         $upper_limit = $count_per_page;
         
-        $query = $wpdb->prepare( "SELECT query_term, timestamp FROM $wpdb->search_log ORDER BY timestamp DESC LIMIT %d, %d", $lower_limit, $upper_limit);
+        $query = $wpdb->prepare( "SELECT query_term, timestamp, results FROM $wpdb->search_log ORDER BY timestamp DESC LIMIT %d, %d", $lower_limit, $upper_limit);
         
         return $wpdb->get_results( $query );
     }

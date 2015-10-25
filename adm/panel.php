@@ -26,6 +26,7 @@ $list_results = $ps_search_admin->get_data( $current_page, $count_per_page);
         <tr>
             <th><?php _e('Keyword', 'pslabs-tiny-search-logger'); ?></th>
             <th><?php _e('Timestamp', 'pslabs-tiny-search-logger'); ?></th>
+            <th><?php _e('Results', 'pslabs-tiny-search-logger'); ?></th>
         </tr>
     </thead>
     <tbody>
@@ -35,6 +36,7 @@ $list_results = $ps_search_admin->get_data( $current_page, $count_per_page);
         <tr>
             <td><?php esc_html_e( $row->query_term ); ?></td>
             <td><?php esc_html_e( $row->timestamp ); ?></td>
+            <td><?php esc_html_e( $row->results ); ?></td>
         </tr>
         <?php endforeach;
         else: ?>

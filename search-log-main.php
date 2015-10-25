@@ -1,12 +1,12 @@
 <?php
 /*
-Plugin Name: Tiny Search Logger
-Plugin URI: http://www.pslabs.cl/
-Description: Logs searches made by end users. Use wisely
-Author: Juan Correa
-Version: 1
-Author URI: http://www.pslabs.cl/
-Text Domain: pslabs-tiny-search-logger
+Plugin Name: Tiny Search Logger (kjm fork)
+Plugin URI: http://www.kajoom.ca/
+Description: Logs searches made by end users.
+Author: Forked by Marc-Antoine Minville
+Version: 1.1
+Author URI: http://www.kajoom.ca/
+Text Domain: kjm-tiny-search-logger
 License: GNU GPL v2
 */
 
@@ -35,7 +35,7 @@ License: GNU GPL v2
 register_activation_hook( __FILE__, 'ps_log_install_plugin' );
 
 define( 'PS_LOG_PLUGIN_PATH', plugin_dir_path(__FILE__) );
-define( 'PS_LOG_VERSION', '0.1');
+define( 'PS_LOG_VERSION', '1.1');
 
 function ps_log_install_plugin(){
     global $wpdb;
@@ -55,9 +55,13 @@ class Pslabs_Search_Log {
     }
     
     public function add_search_to_db( ){
-        global $wpdb;
+        global $wpdb, $wp_query;
         if( is_search() && is_main_query() && !is_admin() ){
-            $wpdb->insert( $wpdb->search_log, array( 'query_term' => get_search_query(), 'timestamp' => current_time('mysql') ) );
+			
+			$search_query = trim(get_search_query());
+			if (!empty($search_query)) {
+				$wpdb->insert( $wpdb->search_log, array( 'query_term' => get_search_query(), 'timestamp' => current_time('mysql'), 'results' => $wp_query->found_posts ) );
+			}
         }
     }
     

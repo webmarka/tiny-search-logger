@@ -22,3 +22,9 @@ Logs searches made by end users on the Search form. Use this wisely
 
 = 0.1 =
 * Development version
+
+== Frequently Asked Questions ==
+
+= Where can I add changes to this plugin? =
+
+On [its GitHub repository](https://github.com/PotterSys/tiny-search-logger)
